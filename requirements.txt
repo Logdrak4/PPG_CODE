@@ -1,0 +1,5 @@
+numpy
+matplotlib
+opencv-python
+scipy
+rpi-gpio --pre
