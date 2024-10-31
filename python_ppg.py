@@ -1,6 +1,5 @@
 
 import cv2
-
 import numpy as np
 import sys
 import csv
@@ -18,7 +17,8 @@ from scipy.stats import median_abs_deviation
 videoName = r'C:\Users\drake\OneDrive - clarkson.edu\PPG_Research\videos\Oct21_Logan01.mp4'
 # Use this to pass filename as an argument
 # videoName = sys.argv[1]
-
+userID = sys.argv[2]
+state = sys.argv[3]
 # Section 2.1
 # Video processing
 videoInput = cv2.VideoCapture(videoName)
@@ -59,9 +59,12 @@ videoInput.release()
 
 # export the red signal as a json file
 totalRed_json = totalRed.tolist()
-with open('red_signal.json', 'w') as f:
-    json.dump(totalRed_json, f)
-print("Signal saved to raw_red_signal.json")
+with open(f'{userID}.json', 'w') as f:
+    json.dump(totalRed_json, f)     
+print(f"Signal saved to {userID}.json")
+
+if(state == "ID"):
+    sys.exit(0)
 
 # Detrend the data
 detrendRed = detrend(totalRed)
